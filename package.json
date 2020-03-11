@@ -8,8 +8,9 @@
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
     "next:dev": "sleep 5 && next dev",
+    "next:build": "next build",
     "dev": "run-p env:dev watch:css next:dev",
-    "build": "next build",
+    "build": "run-s env:prod build:css next:build",
     "start": "next start"
   },
   "dependencies": {

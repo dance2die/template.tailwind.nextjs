@@ -1,7 +1,14 @@
-const purgecss = require("@fullhuman/postcss-purgecss")({
-  content: ["./public/**/*.html"],
-  defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
-});
+// const purgecss = require('@fullhuman/postcss-purgecss')({
+//   content: ['./public/**/*.html'],
+//   defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+// })
+
+const purgecss = {
+  '@fullhuman/postcss-purgecss': {
+    content: ['./pages/**/*.js'],
+    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+  }
+}
 
 // Unlike in create-react-app, you can't use `require`.
 // Reference: https://github.com/zeit/next.js/issues/10117
@@ -9,11 +16,11 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
 // PostCSS-Loader documentation: https://github.com/postcss/postcss-loader#configuration
 module.exports = {
   plugins: {
-    "tailwindcss": {},
-    "autoprefixer": {},
+    tailwindcss: {},
+    autoprefixer: {},
     // Purge and minify CSS only production builds only
-    ...(process.env.NODE_ENV === "production"
-      ? {purgecss, "cssnano": {}}
+    ...(process.env.NODE_ENV === 'production'
+      ? { ...purgecss, cssnano: {} }
       : {})
   }
-};
+}
