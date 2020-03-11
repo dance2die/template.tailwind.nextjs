@@ -1,10 +1,7 @@
-// const purgecss = require('@fullhuman/postcss-purgecss')({
-//   content: ['./public/**/*.html'],
-//   defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
-// })
-
 const purgecss = {
   '@fullhuman/postcss-purgecss': {
+    // Use this if you have `./components` folder
+    // content: ["./components/**/*.js", "./pages/**/*.js"],
     content: ['./pages/**/*.js'],
     defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
   }
